@@ -1,0 +1,32 @@
+
+Every language has: 
+1. Primitives expressions
+2. A means of combining them
+3. A means of abstraction
+ a. Giving names to combinations for reuse
+
+
+Applicative Order Evaluation:
+evaluate the arguments then apply
+
+Normal Order Evaluation: 
+Fully expand expressions and then reduce
+
+
+Example
+(define (square x)
+  (* x x))
+
+Applicative Order Evaluation
+(square (+ 5 1))
+(square 6)
+(* 6 6)
+36
+
+Normal Order Evaluation
+(square (+ 5 1))
+(* (+ 5 1) (+ 5 1))
+(* 6 6)
+36
+
+Lisp uses applicative order evaluation. 
