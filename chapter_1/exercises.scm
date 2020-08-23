@@ -275,3 +275,79 @@ Exercise 1.6
      (= (h 2) (h-prime 2))
      (= (h 3) (h-prime 3)) 
      (= (h 4) (h-prime 4)))
+
+
+(define (count-change amount)
+  (cc amount 5))
+
+(define (cc amount kinds-of-coins) 
+  (cond ((= amount 0) 1)
+	((or (< amount 0) (= kinds-of-coins 0)) 0)
+	(else (+ (cc amount
+		     (- kinds-of-coins 1))
+		 (cc (- amount
+			(first-denomination kinds-of-coins))
+		     kinds-of-coins)))))
+
+(define (first-denomination kinds-of-coins)
+  (cond ((= kinds-of-coins 1) 1)
+	((= kinds-of-coins 2) 5)
+	((= kinds-of-coins 3) 10)
+	((= kinds-of-coins 4) 25)
+	((= kinds-of-coins 5) 50)))
+
+(count-change 100)
+
+;; Exercise 1.11
+(define (f n) 
+  (if (< n 3) n
+      (+ (f (- n 1)) 
+	 (* 2 (f (- n 2)))
+	 (* 3 (f (- n 3))))))
+
+
+(f 0) ; 0
+(f 1) ; 1
+(f 2) ; 2
+(f 3) ; 4
+(f 4) ; 11
+(f 5) ; 25 
+
+(define (f-iter n) 
+  (define (iter a b c n) 
+    (if (< n 0) c
+	(iter b 
+	      c 
+	      (+ c  (* 2 b) (* 3 a))
+	      (- n 1))))
+  (if (< n 3) 
+      n 
+      (iter 0 1 2 (- n 3))))
+
+; Exercise 1.12 
+(define (pascals-triangle r c) 
+  (cond ((or (< r 0) (< c 0)) 0)
+	((or (= c 0) (= r c)) 1)
+	(else (+ (pascals-triangle (- r 1) (- c 1))
+		 (pascals-triangle (- r 1) c)))))
+; Exercise 1.13 
+; Expects me to write a proof by induction which I currently do not know how to do so ... pass. 
+
+; R(n) has an order of growth theta(f(n)) if there are positive constants k_1f(n) and k_2f(n) independent of n such that
+; k1f(n) <= R(n) <= k2f(n) 
+
+;; Exercise 1.4 Orders of Growth of Count Change 
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
